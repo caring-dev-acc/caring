@@ -71,9 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        body: Center(
-            child:Text('World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
-                'This is the main screen, and we will add widgets and whatnot.')
+        body: ListView(
+          
+            children:<Widget>[Text('World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
+                'This is the main screen, and we will add widgets and whatnot.'),
+                Text('tesst'),
+                const Image(
+                  image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                )
+                ]
         )
     );
 
