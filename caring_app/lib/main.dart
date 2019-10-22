@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           
-            children:<Widget>[Text('World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
+            children:<Widget>[Text('asta-i branchu meu World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
                 'This is the main screen, and we will add widgets and whatnot.'),
                 Text('tesst'),
                 const Image(
