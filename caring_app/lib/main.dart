@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-            child:Text('Hello World! This is the first testing of the app...we will start slowly, as slowly as possible.'
+            child:Text('World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
                 'This is the main screen, and we will add widgets and whatnot.')
         )
     );
