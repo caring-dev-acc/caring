@@ -44,44 +44,75 @@ class MyApp extends StatelessWidget {
         primarySwatch: primaryDarkBlue,
         secondaryHeaderColor: secondaryPopYellow,
       ),
-      home: MyHomePage(title: 'CARing'),
+      home: MainPartPages(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class MainPartPages extends StatefulWidget {
+  MainPartPages({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyStatefulWidgetState extends State<MainPartPages> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Cont',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Mesaje',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Beneficii',
+      style: optionStyle,
+    ),
+  ];
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
-        body: ListView(
-          
-            children:<Widget>[Text('World Hello! This is the first testing of the app...we will start slowly, as slowly as possible.'
-                'This is the main screen, and we will add widgets and whatnot.'),
-                Text('tesst'),
-                const Image(
-                  image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                )
-                ]
-        )
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: primaryDarkBlue,
+        selectedItemColor: secondaryPopYellow,
+        unselectedItemColor: Colors.white,
+        selectedFontSize: 22,
+        unselectedFontSize: 12,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            activeIcon: SizedBox.shrink(),
+            title: Text('Cont')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            activeIcon: SizedBox.shrink(),
+            title: Text('Mesaje'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.card_giftcard),
+            activeIcon: SizedBox.shrink(),
+            title: Text('Beneficii'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
     );
-
   }
 }
