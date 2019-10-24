@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+// Import screens from screens folder
+import 'screens/Benefits.dart';
+import 'screens/Conversations.dart';
+import 'screens/Profile.dart';
+
+// Import Auth from login folder
+
+import 'login/Authentication.dart';
+import 'login/Firebase.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -34,84 +44,48 @@ Map<int, Color> secondaryPopYellow_map = {
 MaterialColor secondaryPopYellow = MaterialColor(0xFFfca311, secondaryPopYellow_map);
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CARing',
-      theme: ThemeData(
-        primarySwatch: primaryDarkBlue,
-        secondaryHeaderColor: secondaryPopYellow,
-      ),
-      home: MainPartPages(),
-    );
-  }
-}
-
-class MainPartPages extends StatefulWidget {
-  MainPartPages({Key key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MainPartPages> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Cont',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Mesaje',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Beneficii',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: primaryDarkBlue,
-        selectedItemColor: secondaryPopYellow,
-        unselectedItemColor: Colors.white,
-        selectedFontSize: 22,
-        unselectedFontSize: 12,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            activeIcon: SizedBox.shrink(),
-            title: Text('Cont')
+    // TODO: implement build
+    return new MaterialApp(
+      color: secondaryPopYellow,
+      home: DefaultTabController(
+        length: 3,
+        child: new Scaffold(
+          body: TabBarView(
+            children: [
+              new Container(
+                color: Colors.yellow,
+              ),
+              new Container(color: Colors.orange,),
+              new Container(
+                color: Colors.lightGreen,
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            activeIcon: SizedBox.shrink(),
-            title: Text('Mesaje'),
+          bottomNavigationBar: new TabBar(
+            tabs: [
+              Tab(
+                icon: new Icon(Icons.account_circle),
+                text: 'Cont',
+              ),
+              Tab(
+                icon: new Icon(Icons.message),
+                text: 'Mesaje'
+              ),
+              Tab(
+                icon: new Icon(Icons.card_giftcard),
+                text: 'Beneficii',
+              ),
+            ],
+            labelColor: secondaryPopYellow,
+            unselectedLabelColor: Colors.white,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorPadding: EdgeInsets.all(5.0),
+            indicatorColor: secondaryPopYellow,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            activeIcon: SizedBox.shrink(),
-            title: Text('Beneficii'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+          backgroundColor: primaryDarkBlue,
+        ),
       ),
     );
   }
