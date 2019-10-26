@@ -57,12 +57,12 @@ class MyApp extends StatelessWidget {
               new Container(
                   child: new Scaffold(
                       body: Center(
-                child: Icon(Icons.battery_charging_full),
+                child: Profile(),
               ))),
               new Container(
                   child: new Scaffold(
                       body: Center(
-                child: Icon(Icons.chat),
+                child: Conversations(),
               ))),
               new Container(
                   child: new Scaffold(
