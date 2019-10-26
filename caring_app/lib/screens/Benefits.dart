@@ -6,7 +6,7 @@ class Benefits extends StatelessWidget {
     return Scaffold(
       body:
       Center(
-          child: Text('testing the widget from another screen')
+          child: Text('Benefits screen')
           ),
         );  
   }
