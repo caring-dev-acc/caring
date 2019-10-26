@@ -69,6 +69,10 @@ class MyApp extends StatelessWidget {
                       body: Center(
                 child: Icon(Icons.textsms),
               ))),
+                      body: Center(child: Benefits(),
+              )
+              )
+              ),
             ],
           ),
           bottomNavigationBar: new TabBar(
