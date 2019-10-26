@@ -66,9 +66,6 @@ class MyApp extends StatelessWidget {
               ))),
               new Container(
                   child: new Scaffold(
-                      body: Center(
-                child: Icon(Icons.textsms),
-              ))),
                       body: Center(child: Benefits(),
               )
               )
