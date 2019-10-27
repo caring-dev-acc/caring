@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new MaterialApp(
+    // Test simplu: dacă utilizatorul e logat, afișează aplicația și cu navbar
+    if(isLogged == false){
+      return new MaterialApp(
       title: 'CARing',
       color: secondaryPopYellow,
       home: DefaultTabController(
@@ -95,5 +97,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+    }else{
+      // Dacă nu e logat, atunci afișează ecranul de login
+      return new MaterialApp(
+        home: RegisterPart(),
+      );
+    }
   }
 }
