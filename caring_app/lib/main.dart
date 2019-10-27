@@ -66,10 +66,9 @@ class MyApp extends StatelessWidget {
               ))),
               new Container(
                   child: new Scaffold(
-                      body: Center(child: Benefits(),
-              )
-              )
-              ),
+                      body: Center(
+                child: Benefits(),
+              ))),
             ],
           ),
           bottomNavigationBar: new TabBar(
@@ -79,7 +78,10 @@ class MyApp extends StatelessWidget {
                 icon: new Icon(Icons.account_circle),
                 text: 'Cont',
               ),
-              Tab(icon: new Icon(Icons.message), text: 'Mesaje'),
+              Tab(
+                icon: new Icon(Icons.message), 
+                text: 'Mesaje'
+                ),
               Tab(
                 icon: new Icon(Icons.card_giftcard),
                 text: 'Beneficii',
