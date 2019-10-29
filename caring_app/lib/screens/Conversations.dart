@@ -1,235 +1,167 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart' as english_words;
 
 class Conversations extends StatelessWidget {
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: Center(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          fixedColor: Colors.blue,
-          items: [
-            new BottomNavigationBarItem(
-              icon: new Icon(
-                Icons.message
-                ),
-              title: new Text(
-                'Primite'
-                ),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(
-                Icons.message
-              ),
-              title: new Text(
-                'Trimise'
-              )
-            )
-          ]
-        )
-      )
-    );
-  }
-}
-
-
-class AppBarSearchExample extends StatefulWidget {
-  const AppBarSearchExample({Key key}) : super(key: key);
-
-  @override
-  _AppBarSearchExampleState createState() => _AppBarSearchExampleState();
-}
-
-class _AppBarSearchExampleState extends State<AppBarSearchExample> {
-  final List<String> kEnglishWords;
-  _MySearchDelegate _delegate;
-
-  _AppBarSearchExampleState()
-      : kEnglishWords = List.from(Set.from(english_words.all))
-          ..sort(
-            (w1, w2) => w1.toLowerCase().compareTo(w2.toLowerCase()),
-          ),
-        super();
-
-  @override
-  void initState() {
-    super.initState();
-    _delegate = _MySearchDelegate(kEnglishWords);
-  }
-
+  Conversations(this.listType);
+  final String listType;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('English Words'),
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Search',
-            icon: const Icon(Icons.search),
-            onPressed: () async {
-              final String selected = await showSearch<String>(
-                context: context,
-                delegate: _delegate,
-              );
-              if (selected != null) {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('You have selected the word: $selected'),
-                  ),
-                );
-              }
-            },
-          ),
-        ],
-      ),
-      body: Scrollbar(
-        child: ListView.builder(
-          itemCount: kEnglishWords.length,
-          itemBuilder: (context, idx) => ListTile(
-            title: Text(kEnglishWords[idx]),
-          ),
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(
+          listType,
+          style: new TextStyle(color: const Color(0xFFFFFFFF)),
         ),
       ),
-    );
-  }
-}
-
-// Defines the content of the search page in `showSearch()`.
-// SearchDelegate has a member `query` which is the query string.
-class _MySearchDelegate extends SearchDelegate<String> {
-  final List<String> _words;
-  final List<String> _history;
-
-  _MySearchDelegate(List<String> words)
-      : _words = words,
-        _history = <String>['apple', 'hello', 'world', 'flutter'],
-        super();
-
-  // Leading icon in search bar.
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      tooltip: 'Back',
-      icon: AnimatedIcon(
-        icon: AnimatedIcons.menu_arrow,
-        progress: transitionAnimation,
-      ),
-      onPressed: () {
-        // SearchDelegate.close() can return vlaues, similar to Navigator.pop().
-        this.close(context, null);
-      },
-    );
-  }
-
-  // Widget of result page.
-  @override
-  Widget buildResults(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You have selected the word:'),
-            GestureDetector(
-              onTap: () {
-                // Returns this.query as result to previous screen, c.f.
-                // `showSearch()` above.
-                this.close(context, this.query);
-              },
-              child: Text(
-                this.query,
-                style: Theme.of(context)
-                    .textTheme
-                    .display1
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
+            new Text(
+              listType,
+              style: Theme.of(context).textTheme.display1,
             ),
           ],
         ),
       ),
     );
   }
-
-  // Suggestions list while typing (this.query).
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final Iterable<String> suggestions = this.query.isEmpty
-        ? _history
-        : _words.where((word) => word.startsWith(query));
-
-    return _SuggestionList(
-      query: this.query,
-      suggestions: suggestions.toList(),
-      onSelected: (String suggestion) {
-        this.query = suggestion;
-        this._history.insert(0, suggestion);
-        showResults(context);
-      },
-    );
-  }
-
-  // Action buttons at the right of search bar.
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return <Widget>[
-      query.isEmpty
-          ? IconButton(
-              tooltip: 'Voice Search',
-              icon: const Icon(Icons.mic),
-              onPressed: () {
-                this.query = 'TODO: implement voice input';
-              },
-            )
-          : IconButton(
-              tooltip: 'Clear',
-              icon: const Icon(Icons.clear),
-              onPressed: () {
-                query = '';
-                showSuggestions(context);
-              },
-            )
-    ];
-  }
 }
 
-// Suggestions list widget displayed in the search page.
-class _SuggestionList extends StatelessWidget {
-  const _SuggestionList({this.suggestions, this.query, this.onSelected});
+class ChatModel {
+  final String name;
+  final String message;
+  final String time;
+  final String imageUrl;
 
-  final List<String> suggestions;
-  final String query;
-  final ValueChanged<String> onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.subhead;
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (BuildContext context, int i) {
-        final String suggestion = suggestions[i];
-        return ListTile(
-          leading: query.isEmpty ? Icon(Icons.history) : Icon(null),
-          // Highlight the substring that matched the query.
-          title: RichText(
-            text: TextSpan(
-              text: suggestion.substring(0, query.length),
-              style: textTheme.copyWith(fontWeight: FontWeight.bold),
-              children: <TextSpan>[
-                TextSpan(
-                  text: suggestion.substring(query.length),
-                  style: textTheme,
-                ),
-              ],
-            ),
-          ),
-          onTap: () {
-            onSelected(suggestion);
-          },
-        );
-      },
-    );
-  }
+  ChatModel({this.name, this.message, this.time, this.imageUrl});
 }
+
+List<ChatModel> ChatMockData = [
+  new ChatModel(
+      name: "Abhishek",
+      message: "Where are you ?",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1529377355816-041199697c37?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=889d8b218f60040d71c5d097626790ef&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Grace",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540854148606-26d095702211?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=08796a3910d0616a5381e7ccd1721279&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sam",
+      message: "can we meet tomorrow?",
+      time: "08:30 PM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540847525256-8487706e4f35?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2faab1043d7f1ff9d7048d152ffb9f18&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sid",
+      message: "Will call today",
+      time: "02:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=98308edb1d76644f3607cb3d58867eaa&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Amy",
+      message: "Send me all the details",
+      time: "05:08 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540838916901-c174fd31489c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e75785214e14865e3f70960810014521&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sophie",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540830815582-e3f2032c8f11?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f53b82d8bea1f307a6ef6dbf20e01dd6&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Jessica",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540826406100-fb92b6aaef34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ba5f034fdc195321101f0468262e9aa8&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Nitin",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540877644327-477011fe0afd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6e288ba6f8f31ef9b859f41ef9a5d9b7&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sidd",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540864450638-706d063b5217?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=178b4461a54f9ad6659f95bb4ca22955&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Amit",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540869735573-acab2ef73a97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=72f6d11b6157bbbb646921de62539c91&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Saurabh",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540913815393-20b4dd78b14d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a1f18df0f159d4685f3f1a5254bcdb82&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Vivek",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540917318530-80bfaa52ac2d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6b9e5c1fcf8ae4be02ebc6d025666640&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Samarth",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540907562369-66d4382d54c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9a053126e7622bf834e1a0467cfaa664&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Saransh",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540839880784-c010e4c8069f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7a2073f412aab689b3b9858f9d5a8d0f&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "John",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540907389453-f0e0a8dc70eb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1ee46cff2895387c07863f8542affc97&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Varun ",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540875812190-4e58aefa9afc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ef40af808c14edff28e047d0eecd0f5f&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sofia",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540875716262-8c2b2c4c00ff?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ea56b599042068553de04a9975db825e&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sofia",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540843576820-0c663abee44e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=556af2ca927ff506eb0459b1de0f4aa6&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sofia",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540927347930-9c034baf20d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=14735d1d4b6a80e595d86337f2c35605&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sofia",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540927069569-7ee97bd16165?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6fb76819cd4f2c70c1ab4cd1979c9cc9&auto=format&fit=crop&w=500&q=60"),
+  new ChatModel(
+      name: "Sofia",
+      message: "Hello there, how are you",
+      time: "12:30 AM",
+      imageUrl:
+          "https://images.unsplash.com/photo-1540925129370-769fc46122a6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2f3125c4e2ef0720f93b9dfe00bcecf1&auto=format&fit=crop&w=500&q=60"),
+];
