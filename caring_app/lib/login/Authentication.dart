@@ -12,16 +12,28 @@ class RegisterPart extends StatelessWidget {
         body: SafeArea(
           top: true,
           bottom: true,
-          child: Container(
-            child: new Container(
-              child: Text(
-                'Bine ai \nvenit pe \nCARing!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
+          child: new Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    'Bine ai \nvenit pe \nCARing!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  //color: Colors.red,
                 ),
-              ),
-              //color: Colors.red,
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                ),
+                Container(
+                  child: RegisterForm(),
+                )
+              ],
             ),
             padding: EdgeInsets.all(30),
           ),
@@ -31,23 +43,55 @@ class RegisterPart extends StatelessWidget {
 
 final _formKey = GlobalKey<FormState>();
 
-class RegisterForm extends StatelessWidget{
+class RegisterForm extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
-      child: Column(children: <Widget>[
-        Text('Numele meu este...'),
-        TextFormField(),
-        Text('Sunt un...'),
-        TextFormField(),
-        Text('Mail-ul meu este...'),
-        TextFormField(),
-        Text('Și îmi doresc parola...'),
-        TextFormField(),
-        Text('Scrisă încă odată...'),
-        TextFormField(),
-      ],)
-    );
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+                color: Colors.white,
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: 'Numele meu este...', fillColor: Colors.white),
+                  style: TextStyle(color: primaryDarkBlue),
+                )),
+            Container(
+              color: Colors.white,
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: 'Sunt un...'),
+                style: TextStyle(color: primaryDarkBlue),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              child: TextFormField(
+                decoration:
+                    const InputDecoration(labelText: 'Mail-ul meu este...'),
+                style: TextStyle(color: primaryDarkBlue),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              child: TextFormField(
+                decoration:
+                    const InputDecoration(labelText: 'Și îmi doresc parola...'),
+                style: TextStyle(color: primaryDarkBlue),
+                obscureText: true,
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              child: TextFormField(
+                decoration:
+                    const InputDecoration(labelText: 'Scrisă încă odată...'),
+                style: TextStyle(color: primaryDarkBlue),
+                obscureText: true,
+              ),
+            )
+          ],
+        ));
   }
 }
