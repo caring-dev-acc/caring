@@ -5,9 +5,8 @@ import 'screens/Conversations.dart';
 import 'screens/Profile.dart';
 
 // Import Auth from login folder
-
 import 'login/Authentication.dart';
-import 'login/Firebase.dart';
+//import 'login/Firebase.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +22,6 @@ Map<int, Color> primaryDarkBlue_map = {
   800: Color.fromRGBO(8, 13, 24, .9),
   900: Color.fromRGBO(8, 13, 24, 1),
 };
-
 MaterialColor primaryDarkBlue = MaterialColor(0xFF14213d, primaryDarkBlue_map);
 
 Map<int, Color> secondaryPopYellow_map = {
@@ -38,15 +36,15 @@ Map<int, Color> secondaryPopYellow_map = {
   800: Color.fromRGBO(99, 64, 7, .9),
   900: Color.fromRGBO(99, 64, 7, 1),
 };
-
-MaterialColor secondaryPopYellow =
-    MaterialColor(0xFFfca311, secondaryPopYellow_map);
+MaterialColor secondaryPopYellow = MaterialColor(0xFFfca311, secondaryPopYellow_map);
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    if(isLogged == false) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'CARing',
       color: secondaryPopYellow,
       home: DefaultTabController(
@@ -66,7 +64,8 @@ class MyApp extends StatelessWidget {
               ))),
               new Container(
                   child: new Scaffold(
-                      body: Center(child: Benefits(),
+                      body: Center(
+                child: Benefits(),
               )
               )
               ),
@@ -95,14 +94,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-<<<<<<< Updated upstream
-=======
-    }else{
+    } else {
       // Dacă nu e logat, atunci afișează ecranul de login
       return new MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       );
     }
->>>>>>> Stashed changes
   }
 }
