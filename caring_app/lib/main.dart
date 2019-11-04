@@ -95,5 +95,14 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+<<<<<<< Updated upstream
+=======
+    }else{
+      // Dacă nu e logat, atunci afișează ecranul de login
+      return new MaterialApp(
+        home: SplashScreen(),
+      );
+    }
+>>>>>>> Stashed changes
   }
 }
