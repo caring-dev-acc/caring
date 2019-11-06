@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
               new Container(
                   child: new Scaffold(
                       body: Center(
-                child: new Conversations("Contacts screen"),
+                child: new Conversations(""),
               ))),
               new Container(
                   child: new Scaffold(
