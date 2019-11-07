@@ -2,67 +2,7 @@ import 'package:CARing/main.dart';
 import 'package:flutter/material.dart';
 
 // Simple variable to check if the user is logged
-var isLogged = true;
-
-class SplashScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final logo = Hero(
-      tag: 'logo',
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-          new Container(
-            decoration: new BoxDecoration(
-            image: new DecorationImage(
-              image: new AssetImage('assets/caring.png')
-              )
-            ),
-          )
-      ),
-    );
-
-    final title = Padding(
-      padding: EdgeInsets.all(10.0),
-      child: Text(
-        'CARing',
-        style: TextStyle(fontSize: 38.0, color: Colors.white),
-      ),
-    );
-
-    final text = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        'Găsește instant șoferul doar pe baza plăcuței de înmatriculare',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 26.0, color: Colors.white),
-      ),
-    );
-
-    final body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-        children: <Widget>[logo, title, text],
-      ),
-    );
-
-    return Scaffold(
-      backgroundColor: primaryDarkBlue,
-      body: body,
-    );
-  }
-}
-
-/*class LoginScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-        body: Center(
-          child: Text('Login screen'),
-        )
-      );
-  }
-} // TBC*/
+//var isLogged = true;
 
 class RegisterPart extends StatelessWidget {
   @override
