@@ -1,4 +1,4 @@
-# caring_app
+# CARing
 
 Messaging app for drivers away from their cars.
 
