@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "748138319131",
+    "firebase_url": "https://caring-5109c.firebaseio.com",
+    "project_id": "caring-5109c",
+    "storage_bucket": "caring-5109c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748138319131:android:3d363e91dd1bc04aa597be",
+        "android_client_info": {
+          "package_name": "com.app.caring_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748138319131-t1fec4hcu5stf81pa3ittjd1ppr094pj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvzQsIA4FFigVu6U48cV0GeT3WqbhbtsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748138319131-t1fec4hcu5stf81pa3ittjd1ppr094pj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
