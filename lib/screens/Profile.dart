@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Import screens from screens folder
-import 'Benefits.dart';
-import 'Conversations.dart';
-
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

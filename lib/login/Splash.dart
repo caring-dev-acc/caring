@@ -1,7 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:CARing/main.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-class SplashPage extends StatelessWidget {
+import 'package:CARing/main.dart';
+import 'package:CARing/login/Login.dart';
+
+class SplashPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => AfterSplashScreen();
+}
+
+class AfterSplashScreen extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 3,
+      navigateAfterSeconds: LoginPage(),
+      backgroundColor: primaryDarkBlue,
+      photoSize: 60,
+      image: Image.asset('assets/caring200x200.png'),
+      title: Text(
+        'CARing',
+        style: TextStyle(color: Colors.white, fontSize: 40.0),
+      ),
+      loaderColor: secondaryPopYellow,
+    );
+  }
+}
+
+/* OLD VERSION
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -47,4 +84,4 @@ class SplashPage extends StatelessWidget {
       body: body,
     );
   }
-}
+}*/

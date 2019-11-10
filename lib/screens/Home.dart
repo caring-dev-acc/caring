@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 
-// Import screens from screens folder
-import 'screens/Benefits.dart';
-import 'screens/Conversations.dart';
-import 'screens/Profile.dart';
+import 'package:CARing/main.dart';
+import 'package:CARing/screens/Benefits.dart';
+import 'package:CARing/screens/Conversations.dart';
+import 'package:CARing/screens/Profile.dart';
+import 'package:CARing/login/Login.dart';
 
-// Import Auth from login folder
-import 'login/Authentication.dart';
-import 'login/Home.dart';
-import 'login/Login.dart';
+var isLogged = false; // Utilizatorul este autentificat sau nu
 
-var isLogged = false;
-
-Color primaryDarkBlue = Color(0xFF14213d);
-Color secondaryPopYellow = Color(0xFFfca311);
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    if (isLogged == true) {
+    if (isLogged == true) { // Daca este autentificat se afiseaza meniul urmator
       return new MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'CARing',
@@ -78,9 +68,8 @@ class MyApp extends StatelessWidget {
         ),
       );
     } else {
-      // Dacă nu e logat, atunci afișează ecranul de login
+      // Dacă nu este autentificat, atunci se afișează ecranul de autentificare
       return new MaterialApp(
-        debugShowCheckedModeBanner: false,
         home: LoginPage(),
       );
     }
