@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // Import screens from screens folder
 import 'screens/Benefits.dart';
 import 'screens/Conversations.dart';
 import 'screens/Profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Import Auth from login folder
 
@@ -43,6 +45,14 @@ MaterialColor secondaryPopYellow =
     MaterialColor(0xFFfca311, secondaryPopYellow_map);
 
 class MyApp extends StatelessWidget {
+
+  @override
+  void initState() {
+    Firestore.instance.collection('books').document()
+        .setData({ 'title': 'title', 'author': 'author' });
+    initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
