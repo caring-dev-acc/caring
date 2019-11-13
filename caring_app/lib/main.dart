@@ -45,7 +45,6 @@ MaterialColor secondaryPopYellow =
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new MaterialApp(
       title: 'CARing',
       color: secondaryPopYellow,
@@ -78,10 +77,7 @@ class MyApp extends StatelessWidget {
                 icon: new Icon(Icons.account_circle),
                 text: 'Cont',
               ),
-              Tab(
-                icon: new Icon(Icons.message), 
-                text: 'Mesaje'
-                ),
+              Tab(icon: new Icon(Icons.message), text: 'Mesaje'),
               Tab(
                 icon: new Icon(Icons.card_giftcard),
                 text: 'Beneficii',

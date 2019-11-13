@@ -13,9 +13,6 @@ class Conversations extends StatelessWidget {
           child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Text(
-            listType,
-          ),
           new Padding(padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0)),
           new Expanded(
             child: ListView.builder(
@@ -26,9 +23,16 @@ class Conversations extends StatelessWidget {
                           elevation: 1.0,
                           color: const Color(0xFFFFFFFF),
                           child: new ListTile(
-                            leading: new CircleAvatar(
-                              backgroundImage: new CachedNetworkImageProvider(
-                                  ChatMockData[position].imageUrl),
+                            leading: GestureDetector(
+                              child: Hero(
+                                tag: 'iconAnimation',
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      new CachedNetworkImageProvider(
+                                          ChatMockData[position].imageUrl),
+                                ),
+                              ),
+                              onTap: () => _showSecondPage(context),
                             ),
                             title: new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,9 +65,23 @@ class Conversations extends StatelessWidget {
       )),
     );
   }
+
+  void _showSecondPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (ctx) => Scaffold(
+        body: Center(
+          child: Hero(
+            tag: 'iconAnimation',
+            child: Image.network('https://images.unsplash.com/photo-1540830815582-e3f2032c8f11?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f53b82d8bea1f307a6ef6dbf20e01dd6&auto=format&fit=crop&w=500&q=60'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
-//---------------------------------
+//---------------------------- Conversations screen population ---------------------------
 class ChatModel {
   final String name;
   final String message;
