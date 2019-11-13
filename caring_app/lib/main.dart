@@ -63,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    Firestore.instance.collection('books').document()
-  .setData({ 'title': 'title', 'author': 'author' });
+    Firestore.instance.collection('test').document()
+  .setData({ '1': '2', '3': '4' });
   }
 
   @override
