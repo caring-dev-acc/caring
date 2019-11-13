@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(MyApp());
 
@@ -59,6 +60,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  @override
+  void initState() {
+    Firestore.instance.collection('books').document()
+  .setData({ 'title': 'title', 'author': 'author' });
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "831648320635",
+    "firebase_url": "https://caring-fa4bf.firebaseio.com",
+    "project_id": "caring-fa4bf",
+    "storage_bucket": "caring-fa4bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831648320635:android:fce2a720b9d7f22281a6de",
+        "android_client_info": {
+          "package_name": "com.app.caring_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831648320635-qv776um4ed0svut6m172tg2bhobjkk81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.caring_app",
+            "certificate_hash": "01a4cdb5e19183d9f5a8134e6a132c6e0ca812df"
+          }
+        },
+        {
+          "client_id": "831648320635-gk7cflk8tv48nj6jafusji7bqrk4kbk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmE4dbQvUliMGdZO43ZjQG8S5BWKmoMcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831648320635-gk7cflk8tv48nj6jafusji7bqrk4kbk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
