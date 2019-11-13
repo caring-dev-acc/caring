@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     Firestore.instance.collection('test').document()
-  .setData({ '1': '2', '3': '4' });
+  .setData({ 'test rand 1': 'merge', 'test rand 2': 'merge si asta' });
   }
 
   @override
