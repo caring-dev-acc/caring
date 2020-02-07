@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 
 class Benefits extends StatelessWidget {
@@ -11,3 +12,5 @@ class Benefits extends StatelessWidget {
         );  
   }
 }
+=======
+>>>>>>> master
