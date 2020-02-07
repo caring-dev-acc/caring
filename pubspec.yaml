@@ -1,0 +1,33 @@
+name: CARing
+description: Messaging app for drivers away from their cars.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  splashscreen: ^1.2.0
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/
+  - assets/caring.svg
+  - assets/caring200x200.png
+  - assets/caring1200x1200.png
+  - assets/caring3438x3438.png
+
+  fonts:
+      - family: Nunito
+        fonts:
+          - asset: assets/Nunito.ttf
+        
