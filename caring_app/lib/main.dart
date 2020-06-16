@@ -45,8 +45,8 @@ MaterialColor secondaryPopYellow =
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return new MaterialApp(
-      title: 'CARing',
       color: secondaryPopYellow,
       home: DefaultTabController(
         length: 3,
@@ -54,30 +54,25 @@ class MyApp extends StatelessWidget {
           body: TabBarView(
             children: [
               new Container(
-                  child: new Scaffold(
-                      body: Center(
-                child: Profile(),
-              ))),
+                color: Colors.yellow, 
+              ),
+              new Contacts(''
+              ),
               new Container(
-                  child: new Scaffold(
-                      body: Center(
-                child: new Conversations(""),
-              ))),
-              new Container(
-                  child: new Scaffold(
-                      body: Center(
-                child: Benefits(),
-              ))),
+                color: Colors.lightGreen,
+              ),
             ],
           ),
           bottomNavigationBar: new TabBar(
-            isScrollable: false,
             tabs: [
               Tab(
                 icon: new Icon(Icons.account_circle),
                 text: 'Cont',
               ),
-              Tab(icon: new Icon(Icons.message), text: 'Mesaje'),
+              Tab(
+                icon: new Icon(Icons.message),
+                text: 'Mesaje',
+                ),
               Tab(
                 icon: new Icon(Icons.card_giftcard),
                 text: 'Beneficii',
@@ -85,7 +80,7 @@ class MyApp extends StatelessWidget {
             ],
             labelColor: secondaryPopYellow,
             unselectedLabelColor: Colors.white,
-            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorSize: TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.all(5.0),
             indicatorColor: secondaryPopYellow,
           ),
